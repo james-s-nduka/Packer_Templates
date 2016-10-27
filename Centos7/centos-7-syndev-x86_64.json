@@ -1,7 +1,8 @@
 {
   "variables": {
     "aws_access_key": "",
-    "aws_secret_key": ""
+    "aws_secret_key": "",
+    "atlas_token": "pr8t5NTIeaeVIw.atlasv1.EOgEFPSNFwJuocKUlIW87yNvK1W5vpXBsVr2Yagp7awKqMZkyM2ihHxT5D7qd0Hp6jg"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -28,5 +29,14 @@
       "scripts/01provision.sh"
     ]
   }],
-  "post-processors": ["vagrant"]
+  "post-processors": [{
+    "type": "atlas",
+    "token": "{{user `atlas_token`}}",
+    "artifact": "synwin/centos",
+    "artifact_type": "amazon.image",
+    "metadata": {
+      "created_at": "{{timestamp}}",
+      "description": "SynDev Centos 7 box"
+    }
+  }]
 }
