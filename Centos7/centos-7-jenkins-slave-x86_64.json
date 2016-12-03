@@ -1,0 +1,41 @@
+{
+  "variables": {
+    "atlas_token": "pr8t5NTIeaeVIw.atlasv1.EOgEFPSNFwJuocKUlIW87yNvK1W5vpXBsVr2Yagp7awKqMZkyM2ihHxT5D7qd0Hp6jg"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "us-east-1",
+    "source_ami": "ami-6d1c2007",
+    "instance_type": "t2.micro",
+    "ssh_username": "centos",
+    "vpc_id": "vpc-fba2469e",
+    "subnet_id": "subnet-b8087290",
+    "ami_name": "centos-jenkins-slave {{timestamp}}",
+    "ssh_pty": "true",
+    "tags": {
+      "Name": "SYNWIN Jenkins Build Slave",
+      "OS_Version": "Centos",
+      "Release": "1.0.0"
+    }
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "execute_command": "echo '{{user `ssh_pass`}}' | {{ .Vars }} sudo -S -E sh '{{ .Path }}'",
+    "scripts": [
+        "scripts/02provision.sh"
+    ]
+  }],
+  "post-processors": [{
+    "type": "atlas",
+    "token": "{{user `atlas_token`}}",
+    "artifact": "synwin/jenkinsslave",
+    "artifact_type": "amazon.image",
+    "metadata": {
+      "created_at": "{{timestamp}}",
+      "description": "Synwin Centos 7 Jenkins Slave",
+      "version": "1.0.0"
+    }
+  }]  
+}
