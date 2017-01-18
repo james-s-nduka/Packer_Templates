@@ -24,7 +24,7 @@
     "type": "shell",
     "execute_command": "echo '{{user `ssh_pass`}}' | {{ .Vars }} sudo -S -E sh '{{ .Path }}'",
     "scripts": [
-        "scripts/02provision.sh"
+        "Centos7/scripts/02provision.sh"
     ]
   }],
   "post-processors": [{
