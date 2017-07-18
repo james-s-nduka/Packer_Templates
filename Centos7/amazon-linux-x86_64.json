@@ -12,7 +12,7 @@
     "ami_name": "amazon-linux {{timestamp}}",
     "ssh_pty": "true",
     "tags": {
-      "Name": "Tesco Standard AMI",
+      "Name": "Standard AMI",
       "OS_Version": "Amazon",
       "Release": "1.0.0"
     }
