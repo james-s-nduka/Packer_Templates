@@ -1,20 +1,48 @@
 {
+  "variables": {
+    "subnet": "subnet-0862202da67ecbd36",
+    "vpc": "vpc-0169ad5dbe5e0eba8"
+  },
   "builders": [{
     "type": "amazon-ebs",
+    "ami_name": "Amazon2_Synwin_Image-{{isotime \"200601021504\"}}-ami",
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "eu-west-2",
-    "source_ami": "ami-6d1c2007",
+    "ami_block_device_mappings": [
+      {
+        "device_name": "/dev/xvda",
+        "volume_size": 50,
+        "volume_type": "gp2",
+        "delete_on_termination": true
+      },
+      {
+        "device_name": "/dev/sdf",
+        "volume_size": 200,
+        "volume_type": "gp2",
+        "delete_on_termination": true
+      }
+    ],
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "amzn2-ami-hvm-2.*-x86_64-gp2",
+        "root-device-type": "ebs"
+      },
+      "owners": [
+        "amazon"
+      ],
+      "most_recent": true
+    },
     "instance_type": "t2.micro",
     "ssh_username": "ec2-user",
-    "vpc_id": "vpc-e1947788",
-    "subnet_id": "subnet-e5717d9d",
-    "ami_name": "tesco-amazon-linux {{timestamp}}",
-    "ssh_pty": "true",
+    "vpc_id": "{{user `vpc`}}",
+    "subnet_id": "{{user `subnet`}}",
+    "ssh_interface": "public_ip",
+    "spot_price": "auto",
     "tags": {
-      "Name": "Tesco Standard AMI",
-      "OS_Version": "Amazon",
-      "Release": "1.0.0"
+      "Name": "Standard Base AMI",
+      "OS_Version": "Amazon2"
     }
   }],
   "provisioners": [{
