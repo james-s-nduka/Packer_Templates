@@ -9,10 +9,10 @@
     "ssh_username": "ec2-user",
     "vpc_id": "vpc-e1947788",
     "subnet_id": "subnet-e5717d9d",
-    "ami_name": "tesco-amazon-linux {{timestamp}}",
+    "ami_name": "amazon-linux {{timestamp}}",
     "ssh_pty": "true",
     "tags": {
-      "Name": "Tesco Standard AMI",
+      "Name": "Standard AMI",
       "OS_Version": "Amazon",
       "Release": "1.0.0"
     }
