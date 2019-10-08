@@ -41,14 +41,8 @@
     "ssh_interface": "public_ip",
     "spot_price": "auto",
     "tags": {
-<<<<<<< HEAD
       "Name": "Standard Base AMI",
       "OS_Version": "Amazon2"
-=======
-      "Name": "Standard AMI",
-      "OS_Version": "Amazon",
-      "Release": "1.0.0"
->>>>>>> 58ac84e0827c914e75f2498a244e9c0d190bf34d
     }
   }],
   "provisioners": [{

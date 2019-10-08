@@ -14,6 +14,7 @@ yum install git -y
 
 # Install ansible
 yum install epel-release -y
+yum install python-pip -y
 pip install ansible
 
 # Install Docker
