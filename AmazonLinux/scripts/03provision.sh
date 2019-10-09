@@ -2,7 +2,7 @@
 yum update -y 
 
 # Necessary packages
-yum install -y yum-utils device-mapper-persistent-data lvm2 jq
+yum install -y yum-utils device-mapper-persistent-data lvm2 jq telnet
 yum install net-tools -y
 yum install awslogs -y
 yum install git -y
